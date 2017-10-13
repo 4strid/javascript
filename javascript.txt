@@ -1,0 +1,210 @@
+#########################
+# ENOUGH HTML TO GET BY #
+#########################
+
+This is a guide on Javascript, so I'm sort of expecting you to have a basic knowledge of HTML coming in. It is very simple and easy to understand, and there is plenty written about it already <<mdn, etc>> so I have no interest in writing about it at all.
+
+That said, if you just want to follow along with the examples, then you only need trust me when I tell you that certain pieces of code do certain things. For instance
+
+	<input type="text">
+
+Makes a text field the user can type into. HTML is made up completely of tags, wrapped in < > brackets, which have attributes, which have the form: attribute="something-in-quotes" Some tags have a corresponding closing tag that goes with them, and can contain other content.
+	
+	<button type="button">Press me!</button>
+
+Makes a button which has text that says "Press me!"
+
+To make a container we can put text (or anything else really) into we use something called a "div"
+
+	<div>I am a div</div>
+
+We can put Javascript right into the HTML with a <script> tag. There are other ways to do it, but this gives us nice self-contained examples. Here's a very basic Hello World. It doesn't print it to the screen, but if you check the console you'll see the message.
+
+	<script type="text/javascript">
+		console.log('Hello world!')
+	</script>
+
+To hook up the HTML to the Javascript, we use classes, which we can later ask for in our code.  Let's make "Hello world" using HTML, classes, and Javascript.
+
+	<div class="message"></div>
+
+	<script type="text/javascript">
+	document.querySelector('.message').textContent = 'Hello world!';
+	</script>
+
+We gave our div a class name of "message" so we can access it in our script with document.querySelector('.message'). Notice that that's a String in the parentheses. Since message is a class name, we have to add a . to the start of the string. Once we have the HTML element, we can set its text content to 'Hello world!' which prints it to the screen. Think of the dot as accessing a nested variable; textContent is like a variable inside of document.querySelector('.message') and just like a regular assignment we can set its value with =.
+
+Let's make a slightly more interesting version of Hello World.
+
+	<input type="text" class="name-field">
+	<button type="button" onclick="greet()">Say hello</button>
+	<div class="message"></div>
+
+	<script type="text/javascript">
+	function greet () {
+		var message = 'Hello ' + document.querySelector('.name-field').value;
+		document.querySelector('.message').textContent = message;
+	}
+	</script>
+
+This time we've added an input field and a button. We access the nested variable 'value' in document.querySelector('name-field') to get the String value of what the user typed in. Also note that using - as a word separator in class names is very common.
+
+As far as the button goes, for now just trust me when I say you can make a button do things by giving it an onclick attribute, and passing the name of a function you declare in your script and parentheses. Functions are named blocks of code you can call later on. We'll talk a whole lot more about functions later, but for now just knowing you can attach them to buttons with onclick is enough.
+
+If you have any interest in actually making websites, you'll inevitably need to learn HTML for real, but for now we can do plenty of examples with just those few elements.
+
+
+
+
+
+Consider the following buggy shopping cart calculator which sums the costs of the input fields and then adds a tax of 5%.
+
+	<input type="text" class="item-1">
+	<input type="text" class="item-2">
+	<input type="text" class="item-3">
+	<button type="button" onclick="calculate()">Calculate</button>
+
+	<div class="result">
+	Total:
+	</div>
+
+	<script type="text/javascript">
+	var item1 = document.querySelector('.item-1');
+	var item2 = document.querySelector('.item-2');
+	var item3 = document.querySelector('.item-3');
+
+	function calculate () {
+		var total = (item1.value + item2.value + item3.value) * 1.05;
+		document.querySelector('.result').textContent = 'Total: ' + total;
+	}
+	</script>
+
+If you put some numbers (no decimal points though, that'll mess it up) into the fields and hit calculate, you'll find that it almost seems to work. You get a total in the result field, but somehow the total is way too high. This kind of bug can be very hard to troubleshoot: Javascript doesn't report an error, but it's not doing what you want it to do.
+
+As you may have guessed, this behavior is due to the way Javascript converts between Strings and Numbers. When we get the value out of a text field, it's returned as a String, and "adding" them together, actually concatenates them. However, this concatenated String /looks/ like a Number, so when you multiply by 1.05, it converts it into a big, long integer. In general, you don't want to rely on Javascript's implicit coercion, since it's hard to tell when it will and won't do what you expect it to. We can fix our code by changing it to
+
+	var total = (Number(item1.value) + Number(item2.value) + Number(item3.value)) * 1.05;
+
+The important thing is we're converting our Strings into Numbers right away.
+
+
+
+
+
+
+
+
+Let's revisit our shopping cart example to see Arrays and loops in action.
+
+	<input type="text" class="item">
+	<input type="text" class="item">
+	<input type="text" class="item">
+	<button type="button" onclick="calculate()">Calculate</button>
+
+	<div class="result">
+	Total:
+	</div>
+
+	<script type="text/javascript">
+
+	function calculate () {
+		var total = 0;
+		var items = document.querySelectorAll('.item');
+		for (var i = 0; i < items.length; i++) {
+			total += Number(items[i].value)
+		}
+		document.querySelector('.result').textContent = 'Total: ' + total;
+	}
+
+	</script>
+
+We've replaced our calls to document.querySelector to one call to document.querySelectorAll. The difference is querySelector returns only one element, and querySelectorAll returns an array. We loop over the array using our standard-issue for loop and add up all the totals (not forgetting to convert the values to Numbers first).
+
+What's expecially nice about this is we can have as many input fields as we want, and we don't need to change our Javascript at all.
+
+	<input type="text" class="item"><br>
+	<input type="text" class="item"><br>
+	<input type="text" class="item"><br>
+	<input type="text" class="item"><br>
+	<input type="text" class="item"><br>
+	<input type="text" class="item"><br>
+	<input type="text" class="item"><br>
+	<input type="text" class="item"><br>
+	<input type="text" class="item"><br>
+	<input type="text" class="item"><br>
+	<input type="text" class="item"><br>
+	<input type="text" class="item"><br>
+	<input type="text" class="item"><br>
+	<input type="text" class="item"><br>
+
+<br> adds a line break, useful when we have this many fields.
+
+TODO: while loop example
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Part 2: Prototypes
+
+We are *not* making a Duck class, or a Car, or an Animal because when would you ever actually do that? It is a dumb waste of time.
+
+	//function Duck (sound) {
+	//	this.sound = sound;
+	//}
+	//Duck.prototype.quack = function () {
+	//	console.log(this.sound)
+	//}
+	//var mallard = new Duck('quack quack')
+	//mallard.quack()
+
+Well. I guess we can use it to go over the syntax. What we've done here is defined a special kind of function called a constructor. It's not actually special; it's really just a regular function, but what's special about it is we call it with the new keyword. This makes a new object that you can set properties on using the this keyword. In our function we set a property sound to the sound passed to the constructor function. The resulting object, mallard looks something like {sound: 'quack quack'}. The other thing new does is it sets the prototype of the new object to the constructor function's prototype. Since the function is Duck, the new object's prototype is set to Duck.prototype.
+
+Hold on what's that supposed to mean? Fret not: prototypes are actually really simple. Let's recall what we know about Objects. You can access an object's keys with the dot,
+
+	var obj = {a: 'a'};
+	console.log(obj.a);
+	//prints a
+
+But what about when the object doesn't have the key? It looks it up, and if it doesn't have it, it returns undefined.
+
+	var obj = {};
+	console.log(obj.a);
+	// prints undefined
+
+There is actually one more step that Javascript takes when looking up keys in an object, it also checks to see if the object's prototype has it. And if that prototype has a prototype, it checks that too, etc. We call this process looking up the prototype chain.
+
+Great, what does that do for me? Let's take another look at our *stupid* Duck example. If we do something like
+
+	console.log(mallard)
+
+It will print an object {sound: 'quack quack'} and that's the only property our duck has. But on the next line we try (successfully) to access the property quack. When we ask for quack, it checks mallard, doesn't find it, then checks mallard's prototype, which does have a method (we call a function attached to an object a method, a silly word taken from Java) called quack which is called.
+
+Finally, note that Duck was capitalized. By convention, whenever you define a constructor function, that is, something that returns an object with properties or methods, you capitalize it to set it apart.
+
+That's only one way to do it, there are actually several ways to construct objects ::different constructors:: so feel free to use whatever one you like best. We'll be sticking with this style for now in the examples, for simplicity's sake. When using this pattern, it's important to always use the new keyword, or it will not behave as intended.
+
+Let's take a look at a better example.
+
+function Light (img) {
+	this.img = img
+	this.status = 'online'
+}
+
+Light.prototype.setStatus = function (status) {
+	this.status = status;
+	this.img.src = '/status_' + status + '.png'
+}
