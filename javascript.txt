@@ -1,8 +1,168 @@
+###############
+# EXPRESSIONS #
+###############
+
+An expression is the simplest possible unit of code you can have in JavaScript; everything ultimately boils down to passing these little buggers called expressions around. So, what is an expression? It's any valid unit of code that resolves to a single value. That is to say: anything! (As long as it is just one thing) The types we will be discussing are Numbers, Strings, Booleans, Arrays*, Objects, and Functions.
+
+We will discuss each type at length, beginning with two types: Numbers and Strings
+
+Numbers
+-------
+Any numeric value, can be an integer, can be floating point, can be very big or very small. We use numbers for indexing and math.
+
+Strings
+-------
+A string of text. Can be empty '' or very long. Every time we put text up on the screen, we use strings. Must be wrapped in quotation marks, you can use single or double quotes, either way. I will be using single quotes for all the examples.
+
+If you need to type the same quotation mark you're using to delimit the string, you'll have to escape it by adding a backslash: \'
+
+You can use escaping to add line breaks to your string with \n
+
+Examples:
+
+7
+ > Number 7
+'hello'
+ > String "hello"
+
+The console
+-----------
+Read Eval Print Loop
+
+This lets us write in one line of a program at a time, and see what the result is right away. 
+
+If you type in an expression, it will evaluate that expression (reduce it down to one single value) and then print it out. 
+
+<<< activity >>>
+escaping strings
+
+Make the console log out the following strings (you'll need to escape some characters)
+
+I'm a teapot
+
+"Short and stout" don't you know?
+
+Do the following poem in one string (with newlines)
+
+twas the night before hackmas
+and all through the halls
+sat coders and hackers
+drinking red bull and bawls
+
+You can have a more complicated expression by combining smaller expressions with operators.
+Let's look at examples with the + operator
+
+Examples:
+7 + 6
+ > 13
+'hello ' + 'world'
+ > 'hello world'
+7 + 6 + 7 + 6
+ > 26
+
+Operators:
++ Adds two numbers together
++ Concatenates two strings together
+- Subtracts two numbers
+* Multiplies two numbers
+/ Divides two numbers
+
+You can make an expression as complex as you want, it will always resolve to just one value
+
+7 * 8 + 9 / 3 % 9 * 5 - 4 + 3
+
+The operators follow the standard mathematical order of operations, if you want to change the order you can use parentheses.
+
+var average = (a + b) / 2
+
+Side Effects
+------------
+When I said an expression always resolves to a value, that was not a lie. But sometimes we don't actually care about what that value is. Sometimes, an expression *does something* and that's why we write it. If it's an action, we put it on one line by itself and call it a statement. Let's look at two examples: variables and console.log
+
+In order for our expressions to interact with each other, it can be nice to put them somewhere to use later. To do this we use variables. A variable is a container for a value, like a number used in a sum or a name to be used in a greeting. The variable isn't the value itself, it's a container for a value. A variable is more like a cardboard box than like a number or string. In JavaScript variables can be of any type and can even change between types (but that's generally not a good idea).
+
+You declare a variable with the keyword `var` and then whatever you want to name your variable. You can name a variable basically whatever you want, though there are some keywords reserved by JavaScript.
+
+You can use
+https://mothereff.in/js-variables
+to check
+
+So let's declare a variable:
+
+var myNiceVariable;
+
+The semicolon at the end marks the end of a statement. You can omit it if you like, as long as you only make one statement per line. I really mean that: it's up to you, I personally don't use them in my own projects, I think it looks way nicer without them, but lots of people like them. You should stick to one or the other, don't just randomly pepper your code with semicolons.
+
+You can assign a variable a value with the = operator.
+
+myNiceVariable = 'a nice expression';
+
+You can assign any valid expression as a variable's value. The way this works is the value of the expression is first evaluated, and the result is stored in the variable. 
+
+You can also do both of these operations on the same line:
+
+var myVar = 'a nice expression'
+
+Note that `myNiceVariable = 'hello'` is also an expression! Its value is the value being assigned.
+
+However a variable declaration is *not* an expression. It's a statement. What's the difference? Any valid expression is also a valid statement, but a statement like a variable declaration can't be strung together with other expressions the way expressions can. Basically you can't do something like
+
+var x = 5 + var y = 5
+
+That is to say, the right hand side of an assignment can never contain a variable declaration.
+
+Once declared, a variable can be used in expressions, with the value stored in the variable substituted in when the expression is evaluated.
+
+Example:
+var apples = 10
+var bananas = 15
+var cherries = 3
+
+var total = apples + bananas + cherries
+
+Predictably, total contains the value 28
+
+You can even use the same variable on the left and right hand sides of an = sign. How can this be? The whole right hand side is evaluated first, and only then is it stored in the variable on the left hand side.
+
+var x = 0
+x = x + 1
+
+x contains 1
+
+Note that if we tried to do this in the same step as initializing the variable we'll run into trouble:
+
+var x = x + 1
+
+we're accessing x before it's given a value! This will return NaN
+
+<<< activity >>>
+
+Let's play in the console a bit more, but now add variables to the mix as we build our expressions. Assign some variables values, then use those values in combining expressions. Assign complex expressions to variables.
+
+console.log
+-----------
+console.log is a function we can call to achieve the side effect of printing something to the console. We can print any expression by invoking `console.log(<anything here>)` and putting whatever we want to print between the parentheses. We call this invocation "calling" the function, represented in code by parentheses. We pass whatever we want to print inside those parentheses as an "argument". A function call is also an expression, in this case it resolves to undefined as console.log has nothing meaningful to return. When we call console.log we ignore the value of the expression, as the side effect is what we are interested in, but it's still there.
+
+We've been in the console anyway, so typing in an expression automatically calls console.log on that expression for you, but you can use console.log to do it in code.
+
+This is enough for us to write the most rudimentary version of Hello World:
+
+var message = 'Hello world!'
+console.log(message);
+
+or just
+
+console.log('Hello world')
+
+<<< activity >>>
+
+Print some variables or other expressions to the console with console.log
+
 #########################
 # ENOUGH HTML TO GET BY #
 #########################
 
-This is a guide on Javascript, so I'm sort of expecting you to have a basic knowledge of HTML coming in. It is very simple and easy to understand, and there is plenty written about it already <<mdn, etc>> so I have no interest in writing about it at all.
+This is a guide on JavaScript, so I'm sort of expecting you to have a basic knowledge of HTML coming in. It is very simple and easy to understand, and there is plenty written about it already <<mdn, etc>> so I have no interest in writing about it at all.
 
 That said, if you just want to follow along with the examples, then you only need trust me when I tell you that certain pieces of code do certain things. For instance
 
@@ -12,27 +172,33 @@ Makes a text field the user can type into. HTML is made up completely of tags, w
 	
 	<button type="button">Press me!</button>
 
-Makes a button which has text that says "Press me!"
+Makes a button which contains text that reads "Press me!"
 
 To make a container we can put text (or anything else really) into we use something called a "div"
 
 	<div>I am a div</div>
 
-We can put Javascript right into the HTML with a <script> tag. There are other ways to do it, but this gives us nice self-contained examples. Here's a very basic Hello World. It doesn't print it to the screen, but if you check the console you'll see the message.
+We can put JavaScript right into the HTML with a <script> tag. There are other ways to do it, but this gives us nice self-contained examples. Here's Hello World from before, but in a form that will run in the browser. It doesn't print it to the screen, but if you check the console you'll see the message.
 
-	<script type="text/javascript">
+	<script>
 		console.log('Hello world!')
 	</script>
 
-To hook up the HTML to the Javascript, we use classes, which we can later ask for in our code.  Let's make "Hello world" using HTML, classes, and Javascript.
+*** in the class, we'll be using jsfiddle so the script will live in its own box ***
+
+To hook up the HTML to the JavaScript, we use classes, which we can later ask for in our code.  Let's make "Hello world" using HTML, classes, and JavaScript.
 
 	<div class="message"></div>
 
 	<script type="text/javascript">
-	document.querySelector('.message').textContent = 'Hello world!';
+	var message = document.querySelector('.message')
+	message.textContent = 'Hello world!';
 	</script>
 
 We gave our div a class name of "message" so we can access it in our script with document.querySelector('.message'). Notice that that's a String in the parentheses. Since message is a class name, we have to add a . to the start of the string. Once we have the HTML element, we can set its text content to 'Hello world!' which prints it to the screen. Think of the dot as accessing a nested variable; textContent is like a variable inside of document.querySelector('.message') and just like a regular assignment we can set its value with =.
+
+*** read complex expressions from left to right:
+document is a global variable, it has a property called querySelector. Next is parentheses which means we call querySelector as a function. The final result of the expression is the rightmost thing, or the result of the function call.
 
 Let's make a slightly more interesting version of Hello World.
 
@@ -49,13 +215,13 @@ Let's make a slightly more interesting version of Hello World.
 
 This time we've added an input field and a button. We access the nested variable 'value' in document.querySelector('name-field') to get the String value of what the user typed in. Also note that using - as a word separator in class names is very common.
 
-As far as the button goes, for now just trust me when I say you can make a button do things by giving it an onclick attribute, and passing the name of a function you declare in your script and parentheses. Functions are named blocks of code you can call later on. We'll talk a whole lot more about functions later, but for now just knowing you can attach them to buttons with onclick is enough.
+As far as the button goes, for now just trust me when I say you can make a button do things by giving it an onclick attribute, and passing the name of a function you declare in your script and parentheses. Functions are named blocks of code you can call later on. When we write code inside a function declaration, that code isn't executed right away, actually it's not executed at all, until someone calls the function. We'll talk a whole lot more about functions later, but for now just knowing you can attach them to buttons with onclick is enough.
 
 If you have any interest in actually making websites, you'll inevitably need to learn HTML for real, but for now we can do plenty of examples with just those few elements.
 
 
-
-
+Broken Shopping Cart
+--------------------
 
 Consider the following buggy shopping cart calculator which sums the costs of the input fields and then adds a tax of 5%.
 
@@ -79,20 +245,492 @@ Consider the following buggy shopping cart calculator which sums the costs of th
 	}
 	</script>
 
-If you put some numbers (no decimal points though, that'll mess it up) into the fields and hit calculate, you'll find that it almost seems to work. You get a total in the result field, but somehow the total is way too high. This kind of bug can be very hard to troubleshoot: Javascript doesn't report an error, but it's not doing what you want it to do.
+*** Explain the code ***
 
-As you may have guessed, this behavior is due to the way Javascript converts between Strings and Numbers. When we get the value out of a text field, it's returned as a String, and "adding" them together, actually concatenates them. However, this concatenated String /looks/ like a Number, so when you multiply by 1.05, it converts it into a big, long integer. In general, you don't want to rely on Javascript's implicit coercion, since it's hard to tell when it will and won't do what you expect it to. We can fix our code by changing it to
+If you put some numbers (no decimal points though, that'll mess it up) into the fields and hit calculate, you'll find that it almost seems to work. You get a total in the result field, but somehow the total is way too high. This kind of bug can be very hard to troubleshoot: JavaScript doesn't report an error, but it's not doing what you want it to do.
+
+<<< discussion >>> why doesn't this work? why doesn't it work with decimal points?
+
+As you may have guessed, this behavior is due to the way JavaScript converts between Strings and Numbers. When we get the value out of a text field, it's returned as a String, and "adding" them together, actually concatenates them. However, this concatenated String /looks/ like a Number, so when you multiply by 1.05, it converts it into a big, long integer. In general, you don't want to rely on JavaScript's implicit coercion, since it's hard to tell when it will and won't do what you expect it to. We can fix our code by changing it to
 
 	var total = (Number(item1.value) + Number(item2.value) + Number(item3.value)) * 1.05;
+
+We can now also use decimal points in our fields without problems.
 
 The important thing is we're converting our Strings into Numbers right away.
 
 
 
 
+Now it's time for you to build something. We'll be making a simple calculator that takes two numbers and adds, subtracts, multiplies, or divides them, displaying the result to the screen. You can and should use the shopping cart as your starting point.
+
+Here's the differences:
+  - the calculator will have 4 buttons instead of 1. Each of these buttons will run a different function.
+  - the calculator will only have 2 input fields instead of 3
+
+Use copy and paste! Write the code for one of the functions and copy and paste it: Rename the pasted function, and you should only have to change one character in the code itself.
+
+<<< activity >>> 
+
+7 min work on calculator
+
+Solution: 
+	<input type="text" class="item-1">
+	<input type="text" class="item-2">
+	<button type="button" onclick="add()">+</button>
+	<button type="button" onclick="subtract()">-</button>
+	<button type="button" onclick="multiply()">*</button>
+	<button type="button" onclick="divide()">/</button>
+
+	<div class="result">
+	Total:
+	</div>
+
+	<script type="text/javascript">
+	var item1 = document.querySelector('.item-1');
+	var item2 = document.querySelector('.item-2');
+
+	function add () {
+		document.querySelector('.result').textContent = Number(item1.value) + Number(item2.value);
+	}
+	function subtract () {
+		document.querySelector('.result').textContent = Number(item1.value) - Number(item2.value);
+	}
+	function multiply () {
+		document.querySelector('.result').textContent = Number(item1.value) * Number(item2.value);
+	}
+	function divide () {
+		document.querySelector('.result').textContent = Number(item1.value) / Number(item2.value);
+	}
+	</script>
+
+This process of taking something that already exists and changing it slightly to meet your needs is a critical skill.
+
+################
+# CONDITIONALS #
+################
+
+So far our programs have only done one thing, whatever the input was, the output was basically the same thing. We haven't made any choices. Even in our calculator, there were multiple buttons, but each button only did one action no matter what the inputs were. It would be really great if we could represent choices to be made, and the resulting outcomes of those choices. Luckily we can!
+
+It's called an if-else statement and it is basically the most important thing other than variables. The syntax is as such:
+
+if (condition) {
+   code block
+} else {
+   do something else
+}
+
+The keyword `if`, parentheses, a condition (this can be any expression, but it is usually a conditional expression), curly braces that surround some block of code to run, the keyword `else`, and another block of code surrounded by curly braces.
+
+You can actually just wrap any code in curly braces, and it will consider it as one big statement. But there's no reason to ever do this other than when it's the body of a statement or loop.
+
+A real example:
+if (pieIsReady) {
+    console.log('here is a hot, fresh slice of pie!');
+} else {
+    console.log('sorry but you\'ll have to wait a bit longer for pie');
+}
+
+So what kind of variable is pieIsReady in this example? It doesn't seem to be a number or a string; it is our newest addition to the family: Boolean!
+
+Booleans
+--------
+Booleans can have one of two values: true or false. These are special keywords in JavaScript and don't need quotation marks, just the words `true` and `false`
+
+We use Booleans to make decisions in our code: right now in if-else statements and later in loops. If the value of the condition expression is `true` then the code block after executes. If it is false the other code executes. Only one branch of an if-else statement executes, never both.
+
+So we could set
+var pieIsReady = true
+and our loop would execute, but it begs the question, "What is it about a pie that determines if it is ready?" Shouldn't pieIsReady be based on that, somehow?
+
+We'll use a new set of operators to construct Booleans out of other types of expressions.
+
+Operators:
+===  equals
+ >   greater than
+ <   less than
+ >=  greater than or equal to
+ <=  less than or equal to
+
+These compare two expressions and evaluate to a Boolean value. If either of the values is a Number, then the other value is cast to a number if it is not already one and the two expressions are compared as Numbers. If they are both Strings, they are compared alphabetically, i.e. 'Adam' < 'Bob'
+
+Example:
+var a = 1
+var b = 2
+var a1 = a
+
+*** have the students call out the answers here ***
+
+a === b
+// false
+
+a === a1
+// true
+
+a < b
+// true
+
+a >= a1
+// true
+
+And in code:
+
+if (age >= 21) {
+    console.log('you can order a beer if you\'d like')
+} else {
+    console.log('no beer for you')
+}
+
+Revisiting our pie example:
+
+var pieIsReady = minutesInOven >= 75
+
+Note that we can use them directly in conditions, or store them to variables: Boolean expressions are expressions just like Numbers and Strings.
+
+Multiple Branches
+-----------------
+
+You can also string a bunch of if elses together to test for more than just two options:
+
+if (temperature > 90) {
+    message = 'it\'s a bit warm today'
+} else if (temperature > 99) {
+    message = 'it\'s a little hot today'
+} else if (temperature > 110) {
+    message = 'it\'s too dang hot!'
+} else {
+    message = 'brrr it\'s cold'
+}
+
+Let's make a number guessing game to show off our knowledge of conditionals.
+
+First: a review.
+
+Syntax So Far
+-------------
+Variable declarations and assignment
+
+var animal = 'elephant'
+
+Functions
+
+function sayHello () {
+    console.log('hi there!')
+}
+
+sayHello()
+
+Conditionals
+
+if (a === b) {
+   // do some stuff
+} else {
+   // do something else
+}
+
+Expressions:
+
+what are the types of these expressions?
+
+velocity * 1.3
+
+a + b * c >= x + y / z
+
+document.querySelector('input').value
+
+<<< activity >>>
+
+Guess The Number
+----------------
+
+We're going to, as a class build a guess the number game. The computer randomly generates a number between 1 and 100 and then the user has 10 tries to guess the number. After they guess a number, we tell them if their guess was too high or too low. If their guess is the number, they win the game. If they run out of tries, they lose the game.
+
+Let's start with the HTML for our game. We need a field for the user to put a number into, a button to guess, and a container to put messages in.
+
+<input type="text">
+<button type="button">Guess</button>
+<div class="message">Guess a number between 1 and 100</div>
+
+Now we'll do the boilerplate code to access our HTML elements with JavaScript
+
+var input = document.querySelector('input')
+var button = document.querySelector('button')
+var output = document.querySelector('.message')
+
+button.addEventListener('click', function () {
+	var guess = Number(input.value)
+})
+
+This is the same as
+
+button.addEventListener('click', guessNumber)
+
+function guessNumber () {
+
+}
+
+But since we never need the function outside of this event listener, we can just define it inside the call to addEventListener. It's compact, and once you get used to it, easier to read and understand.
+
+Now the coding can begin. We need to generate a random number and store it to compare guesses to later. Variables, very good. We need a variable to keep track of how many guesses the user made.
+
+var randomNumber = Math.ceil(Math.random() * 100)
+var tries = 10
+
+Every time the user presses the guess button, the function we passed to addEventListener will fire. We get the number the user guessed from the input field. We need to check if the user's guess is too high, too low, or exactly right.
+
+button.addEventListener('click', function () {
+	var guess = Number(input.value)
+	var message;
+	if (guess > randomNumber) {
+		message = guess + ' is too high'
+	} else if (guess < randomNumber) {
+		message = guess + ' is too low'
+	} else if (guess === randomNumber) {
+		message = 'You win!'
+	}
+	output.textContent = message
+})
+
+Now we can play our game. We can make guesses and the computer will tell us if we are too high, too low, or exactly right. However, there's no concept of losing the game, nor is there a way to start a new game. To start a new game, we just need to generate a new random number and set tries back to 10 again. We could simply add that to the code where we win and again when we lose, but that should set off alarm bells in your head. "Don't repeat yourself" you hear me, from the back of your mind. Instead, let's use a function to reset the game.
+
+var randomNumber, tries
+function resetGame () {
+	randomNumber = Math.ceil(Math.random() * 100)
+	tries = 10
+}
+resetGame()
+...
+} else if (guess === randomNumber) {
+	message = 'You win!'
+	resetGame()
+}
+...
+if (tries === 0) {
+	message = 'Too bad, you ran out of guesses'
+	resetGame()
+}
+
+As a finishing touch, we should probably tell the user how many guesses they have left as they play the game
+<div class="tries-left"></div>
+...
+triesLeft.textContent = 'You have ' + tries + ' tries left'
+
+More Conditional Operators
+--------------------------
+  ! negation: returns the opposite of what follows it, if true then false, if false then true  
+!== not equal to: if they are equal, it returns false, otherwise true
+ && logical and: returns true if both left and right hand side are true
+ || logical or: returns true if left or right hand side is true (or both)
+
+??? Short circuit evaluation ???
+
+##########
+# ARRAYS #
+##########
+
+So far, all our variables have held just one value: an evalutated expression, and I wasn't lying when I said they can only hold one thing, but what if instead of a value, we put an actual Thing into a variable. A Number can only be one number, and a String just one String, but a Thing, well that could be anything. It's easy to imagine a Thing that contains two Numbers, just think of two cardboard boxes stapled together, with one box labeled x and one labeled y.
+
+There exists a way to construct these open-ended generic data types that can contain multiple values, and those things are called Objects.
+
+We've seen plenty of Objects before:
+
+document
+  > the special document object that contains the DOM. Contains many useful methods for interacting with the DOM
+
+document.querySelector('.button')
+  > an object that represents an HTML button on the page. Contains many useful methods / properties for interacting with the button
+
+We accessed "properties" of those objects with dot notation, properties such as `input.value` and `message.innerText`
+
+An object can have any number of properties, and they can be named even more freely than variables: properties can have literally any String name you want.
+
+If you're using a property name that isn't a valid JS identifier (a number for instance) you'd need to use the other, square bracket notation:
+
+input['value']
+
+myObj['my-very-obnoxious-property-name']
+
+myObj[5]
+
+//Arrays as Objects
+//-----------------
+//Arrays first and foremost are Objects. That's why there's an * when I say they're a type; they're not; they're actually just objects, with unique properties and methods that make then special.
+Before we talk about objects For Real, we're going to talk about a special kind of object: arrays. An array is an object that describes a list. If you consider a list in general, it contains multiple items and has a specific ordering, we also consider the useful property length: how many items are in the list. JavaScript Arrays follow that exact model.
+
+Let's look at some Arrays
+
+var myEmptyArray = []
+
+Square brackets to indicate that it's an array
+
+var myFullArray = [1, 2, 3]
+
+This time, our array has three elements, separated by commas.
+
+Arrays can contain any type, including objects (and therefore arrays), and they don't need to be the same type either (though mostly we make arrays where all the elements are of the same type).
+
+var myCrazyArray = [1,'2',[3,4]]
+
+Array Indexing
+--------------
+To access one of the elements from within the array, we use the square bracket notation as Objects and pass in the index of the element we want. By index, I mean the position in the array. We begin counting at 0 rather than 1, because of how arrays work in lower level languages like C.
+
+Examples:
+
+var primes = [2,3,5,7]
+
+var first = primes[0]
+var second = primes[1]
+
+console.log('The first prime is ' + first)
+console.log('The second prime is ' + second)
 
 
+Square bracket notation can also be used on the left hand side of a definition like a variable.
 
+var arr = [1,2,3]
+arr[1] = 100
+
+console.log(arr)
+// 1,100,3
+
+Arrays of Arrays
+----------------
+Sometimes it can be useful to make an array of arrays, say, you want to store a 2 dimensional grid.
+
+Example:
+
+var multiplicationTable = [['x', 'x', 'x', 'x', 'x'],
+                       	   ['x', 1, 2, 3, 4],
+                       	   ['x', 2, 4, 6, 8],
+                       	   ['x', 3, 6, 9, 12],
+                       	   ['x', 4, 8, 12, 16]]
+
+To access an element of our multidimensional array, we use the square brackets notation twice: once to access the row(which is an array) and again to access the column within that row.
+
+Let's do some multiplication with our table:
+
+var twoXthree = multiplicationTable[2][3]
+
+Recall that we read expressions from left to right. First we get the 3rd element of the table with [2]
+
+That gives us ['x', 2, 4, 6, 8]
+
+This is the 2s row of the table
+
+Then we index into that array with [3], getting the result of the multiplication: 6
+
+var threeXone = multiplicationTable[3][1]
+var fourXfour = multiplicationTable[4][4]
+
+(This works because we filled our 0 indices with garbage, so our arrays start at 1)
+
+array.length
+------------
+You can get how many elements are in an array with the length property that each array has.
+
+var foo = []
+
+foo.length
+0
+
+var bar = ['x','y','z']
+
+bar.length
+3
+
+We will talk about why this is useful literally right now, so just hold your horses.
+
+#########
+# LOOPS #
+#########
+
+So far we've accessed elements in our array one at a time with indexing, but what if we wanted to do something with all of the elements, regardless of how many there are?
+
+Let's say we want to construct an array that contains two times the values of another array. What do we need?
+
+Here's the code just doing it by hand:
+
+var a = [1, 2, 3, 4]
+var b = []
+
+b[0] = a[0] * 2
+b[1] = a[1] * 2
+b[2] = a[2] * 2
+b[3] = a[3] * 2
+
+var cats = ['Wednesday', 'Andy', 'OG', 'Skitchy']
+var message = 'My cats are called '
+
+message += cats[0] + ', '
+message += cats[1] + ', '
+message += cats[2] + ', '
+message += cats[3] + ', '
+
+console.log(message)
+
+Those last 4 lines are all almost the same, what we need is some way to run almost the same code, multiple times.
+
+To repeat ourselves, to run the same code over and over again, we use loops.
+
+Let's consider the most common loop construct: the for loop.
+
+for (initializer; condition; incrementer) {
+	// some block of code to run
+}
+
+The initializer sets our starting point, the condition is an expression that determines if the loop should execute again (just like the condition in an if statement), and the incrementer is what we do at the end of each iteration, which causes the loop to go to the next step.
+
+Example:
+Here's the code from earlier, but using a for loop. Notice how we only had to write the line to append the cat's name once this time.
+
+var cats = ['Wednesday', 'Andy', 'OG', 'Skitchy']
+var message = 'My cats are called '
+
+for (var i = 0; i < cats.length; i++) {
+	message += cats[i] + ', '
+}
+
+console.log(message)
+
+Initializer: we set a variable, our counter i, to 0. We can name that variable anything we want, but i is the most common name for an iterator. It might stand for iterator or index.
+
+Condition: we want to run the loop as many times as there are elements in the array, so we do it up to the length of the array. Since we started counting at 0, we want to end at index 1 less than the length, (there's no such element as cats[4])
+
+Incrementer: i++ This means the same thing as i = i + 1, but in one operator. Incrementing i is what actually causes our loop to advance to the next step.
+
+Let's run through this loop one step at a time:
+
+On our first pass, we set i = 0 from the initializer
+Then we check if the condition is satisfied: i is 0, which is less than a.length (4 in this case) so it passes. We will run the code in the body of the loop, appending Wednesday to our result string. Now that we're done with the body, the incrementer runs: i is set from 0 to 1.
+
+Now we go through the loop for a second time, checking the condition again: i is 1 now, which is less than 4, so we execute the body, setting b[1]. Then increment. i is 2 now. Still less than 4 so we execute the body, this time setting b[2]. Increment. i is 3: still less than 4 so we execute the body, copying the last value of a. Increment. i is 4 now which fails our condition meaning we exit the loop. 
+
+Increment operators
+-------------------
+There is, in addition to i++ also i-- which decrements by 1 instead of going up by 1.
+
+If you use it in an expression, it evaluates to the number before incrementing.
+
+var i = 0;
+var message = 'Hello ' + i++
+
+message will be 'Hello 0'
+and i will be 1
+
+If you want to increment first, then evaluate, you can put them in front of the variable instead of after.
+++i
+--i
+
+There's nothing special about using the variable name i here, nor is there anything special about ANY variable name we use in examples, they are just names.
+
+counter++
+score++
+lives--
+
+In a for loop, the incrementer gets executed by itself, so it makes no difference if you use ++i or i++
+
+Example:
 
 Let's revisit our shopping cart example to see Arrays and loops in action.
 
@@ -105,11 +743,11 @@ Let's revisit our shopping cart example to see Arrays and loops in action.
 	Total:
 	</div>
 
-	<script type="text/javascript">
+	<script>
 
 	function calculate () {
 		var total = 0;
-		var items = document.querySelectorAll('.item');
+		var items = document.querySelectorAll('.item'); // items = [item, item, item]
 		for (var i = 0; i < items.length; i++) {
 			total += Number(items[i].value)
 		}
@@ -118,9 +756,9 @@ Let's revisit our shopping cart example to see Arrays and loops in action.
 
 	</script>
 
-We've replaced our calls to document.querySelector to one call to document.querySelectorAll. The difference is querySelector returns only one element, and querySelectorAll returns an array. We loop over the array using our standard-issue for loop and add up all the totals (not forgetting to convert the values to Numbers first).
+We've replaced our calls to document.querySelector to one call to document.querySelectorAll. The difference is querySelector returns only one matching element, and querySelectorAll returns an array of all matching elements. We loop over the array using our standard-issue for loop and add up all the totals (not forgetting to convert the values to Numbers first).
 
-What's expecially nice about this is we can have as many input fields as we want, and we don't need to change our Javascript at all.
+What's expecially nice about this is we can have as many input fields as we want, and we don't need to change our JavaScript at all.
 
 	<input type="text" class="item"><br>
 	<input type="text" class="item"><br>
@@ -139,13 +777,97 @@ What's expecially nice about this is we can have as many input fields as we want
 
 <br> adds a line break, useful when we have this many fields.
 
-TODO: while loop example
+While Loops
+-----------
+Another loop construct we have available is a while loop. This one doesn't include the initializer or incrementer. A while loop just has a condition.
 
+while (condition) {
+  // code to repeat
+}
 
+This means we must initialize the counter and increment it ourselves. We can rewrite our for loop from before as a while loop.
 
+Example:
 
+var i = 0;
+while (i < a.length) {
+    b[i] = a[i] * 2
+	i++
+}
 
+All we did was move the initializer and incrementer out of the loop construct itself.
 
+You can generally use for loops and while loops interchangably at your preference but I would say in practice, you use a for loop when you know the start and end conditions beforehand, like when we loop through all the elements in an array and a while loop when you want to do something indefinitely until a condition is met.
+
+Example:
+
+Let's say we wanted to add spaces to a string until it has a certain desired length. We call this padding the string. A while loop is the natural choice.
+
+var string = 'hello'
+var targetLength = 10
+
+var padded = string
+
+while (padded.length < targetLength) {
+	padded += ' '
+}
+
+console.log(padded) // 'hello     '
+console.log(padded.length) // 10
+
+A while loop fits well here as we're not sure how many times we'll have to add a space since it depends on how long the string was in the first place.
+
+If we pass a string that is already length 10, then the condition fails at the first iteration, so the body of the while loop is never run, so we don't end up with a string of length 11 by mistake.
+
+Do... While Loops
+-----------------
+There's one more construct we can use called a do... while loop. It has the form
+
+do {
+    // code to run
+} while (condition)
+
+It's the same as a while loop except that it doesn't check the condition before running the first time.
+
+I've used do... while a total of 1 times in my entire history of programming, and that's in *any* C type language not just JavaScript, so I'd be surprised if you end up needing it, but hey you never know.
+
+Early Exits: break
+------------------
+Sometimes we want to bail out before finishing the whole run through of the loop. To do this we can use the keyword break, which immediately exits out of a loop and proceeds to the code that follows it.
+
+Let's say we have a message decoder that takes an array of numbers that each represent a position in the alphabet. We need to check to make sure all the numbers in the array are valid positions in the alphabet before decoding, since a value like 27 will mess things up since there's no 27th letter of the alphabet. Once we know it's safe, we can decode the message. If we encounter a value that is not safe, then we don't need to bother checking the rest of the array, since one bad value makes the whole thing bad, so we break out of the loop to save some time.
+
+// our secret encoded message
+var array = [10, 1, 22, 1, 19, 3, 18, 9, 16, 20, 0, 25, 5, 1, 8]
+
+function checkIfSafe () {
+	var safe = true
+	for (var i = 0; i < array.length; i++) {
+		//console.log(i)
+		if (array[i] < 1 && array[i] > 26) {
+			safe = false
+			break
+		}
+	}
+
+	if (safe) {
+		process()
+	} else {
+		console.log('This array cannot be decoded')
+	}
+}
+
+function process () {
+	var decoder = [' ', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
+
+	var secret = ''
+	for (var i = 0; i < array.length; i++) {
+		secret += '?'
+	}
+	console.log(secret)
+}
+
+checkIfSafe()
 
 
 
@@ -185,7 +907,7 @@ But what about when the object doesn't have the key? It looks it up, and if it d
 	console.log(obj.a);
 	// prints undefined
 
-There is actually one more step that Javascript takes when looking up keys in an object, it also checks to see if the object's prototype has it. And if that prototype has a prototype, it checks that too, etc. We call this process looking up the prototype chain.
+There is actually one more step that JavaScript takes when looking up keys in an object, it also checks to see if the object's prototype has it. And if that prototype has a prototype, it checks that too, etc. We call this process looking up the prototype chain.
 
 Great, what does that do for me? Let's take another look at our *stupid* Duck example. If we do something like
 
@@ -201,7 +923,7 @@ Let's take a look at a better example.
 
 function Light (img) {
 	this.img = img
-	this.status = 'online'
+	this.setStatus('online')
 }
 
 Light.prototype.setStatus = function (status) {
