@@ -1,3 +1,8 @@
+todo:
+how to read expressions
+accessing out of bound indices
+how to read nested function calls
+
 ###############
 # EXPRESSIONS #
 ###############
@@ -14,7 +19,7 @@ Strings
 -------
 A string of text. Can be empty '' or very long. Every time we put text up on the screen, we use strings. Must be wrapped in quotation marks, you can use single or double quotes, either way. I will be using single quotes for all the examples.
 
-If you need to type the same quotation mark you're using to delimit the string, you'll have to escape it by adding a backslash: \'
+If you need to type the same quotation mark you're using to delimit the string, you'll have to escape it by adding a backslash: \' or \"
 
 You can use escaping to add line breaks to your string with \n
 
@@ -24,6 +29,7 @@ Examples:
  > Number 7
 'hello'
  > String "hello"
+
 
 The console
 -----------
@@ -838,7 +844,7 @@ Sometimes we want to bail out before finishing the whole run through of the loop
 Let's say we have a message decoder that takes an array of numbers that each represent a position in the alphabet. We need to check to make sure all the numbers in the array are valid positions in the alphabet before decoding, since a value like 27 will mess things up since there's no 27th letter of the alphabet. Once we know it's safe, we can decode the message. If we encounter a value that is not safe, then we don't need to bother checking the rest of the array, since one bad value makes the whole thing bad, so we break out of the loop to save some time.
 
 // our secret encoded message
-var array = [10, 1, 22, 1, 19, 3, 18, 9, 16, 20, 0, 25, 5, 1, 8]
+var secret = [10, 1, 22, 1, 19, 3, 18, 9, 16, 20, 0, 25, 5, 1, 8]
 
 function checkIfSafe () {
 	var safe = true
@@ -859,24 +865,153 @@ function checkIfSafe () {
 
 function process () {
 	var decoder = [' ', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
+	var message = ''
 
-	var secret = ''
-	for (var i = 0; i < array.length; i++) {
-		secret += '?'
+	for (var i = 0; i < secret.length; i++) {
+		message += '?'
+		// change this line to use the decoder to reveal the secret message
+		// hint: you will need to index into the decoder array
 	}
-	console.log(secret)
+	document.querySelector('body').textContent = message
 }
 
 checkIfSafe()
 
+<<< activity >>>
 
+Change the line that appends a '?' to the message to a line which actually decodes the number at secret[i]
 
+Early Exits: continue
+---------------------
+To break out of one single iteration of a loop, but continue looping after that, we use the continue statement.
 
+Example:
 
+var b = []
 
+for (var i = 0; i < 100; i++) {
+	if (i % 2 === 0) {
+		continue
+	}
+	b[b.length] = i
+}
 
+This copies over only the odd numbered values of i, exiting the iteration early if it's even so the last line doesn't execute.
 
+Infinite Loops
+--------------
+If for some reason, the loop executes without ever hitting the exit condition, it will run forever freezing your program or crashing it. Some ways to accidentally create infinite loops are forgetting to increment your iterator, or having a condition that is always true.
 
+In other programming languages, you might create infinite loops on purpose for various reasons, but in JavaScript it's pretty rare that you would want one.
+
+Example:
+
+while (true) {
+	if (some complicated condition that can only be calculated inside the loop) {
+		break;
+	}
+}
+
+You can usually tell pretty easily if you have an infinite loop, as the page will get all freezy and you won't be able to interact with it in any way.
+
+###########
+# OBJECTS #
+###########
+Before we dive into Objects, let's consider Arrays as Objects for a little while longer, to discuss some details I may have glossed over.
+
+Example: 
+
+var x = 5
+var y = []
+
+These two lines of code may look similar, but actually they are doing fundamentally different things. This is because objects are Things not Values. When we assign a value to a variable, we copy the value from the right hand side into the left hand side. We can compare that value 5 to any other value 5 and find that they're the same. By contrast, every Object is unique. When we assign an object to a variable, it means that variable refers to that specific object.
+
+Example:
+
+var a = []
+var b = []
+
+console.log(a === b) // false
+
+This may seem strange at first, but it is actually intuitive that a and b should uniquely refer to different things. Say we assign a value to index 0 of array `a`: array `b` should not change, and vice versa. If objects weren't unique, then we could only have one array for our entire program.
+
+Example:
+
+a[0] = '!!!'
+b[0] = '???'
+
+console.log(a) // ['!!!']
+console.log(b) // ['???']
+
+Let's compare assigning values and assigning objects some more.
+
+Example:
+
+var x = 5
+var y = x
+x = 10
+
+console.log(x) // 10
+console.log(y) // 5
+
+var a = []
+var b = a
+a[0] = 'whoa'
+
+console.log(b)
+
+When we change x to 10, y is left unchanged because we just copied the value of x into y. After that, x and y have no relationship to each other.
+
+When we assign a to b, the array is not copied. Instead, b actually refers to the exact same object as a. When we change a, b is also affected because they refer to the same object.
+
+The Object Hotel
+----------------
+One way to think about this is to say that an object is simply too big to fit in a variable. Instead, the object checks out a room in the Object Hotel and the value we store in the variable is just its room number. When we access an object from a variable, we take the room number we have stored, go to the hotel, and find the object in the appropriate room.
+
+If we think of it this way, then objects behave exactly the same way as any other variable: when we copied a into b, we actually did copy the value: that value is the reference to the object referred to by `a`
+
+To actually copy an array, we can loop over the original array, copying all the values into a new, empty array.
+
+var a = [99, 98, 97]
+var b = []
+
+for (var i = 0; i < a.length; i++) {
+	b[i] = a[i]
+}
+
+console.log(b)
+
+Objects At Last
+---------------
+By now we already know quite a bit about objects. They are complex data types that we use to represent just about anything. This representation consists of the various properties and methods attached to the object. It's finally time to start making objects of our own.
+
+Whereas we use [] to denote arrays, we use {} to denote objects.
+
+Example:
+
+var emptyObject = {}
+
+An empty object isn't very interesting, so let's make an object with a few members:
+
+Example:
+
+var instructor = {
+	name: 'Peter',
+	age: 25,
+	student: false,
+	job: 'JS Instructor',
+	favoriteLanguages: ['JavaScript', 'Haskell', 'C', 'Java', 'Python'],
+	greet: function () {
+		console.log('Hi! My name is ' + this.name)
+		console.log('My favorite programming language is ' + this.favoriteLanguages[0])
+	}
+}
+
+We already know how to access these properties:
+
+instructor.name
+instructor.age
+instructor.favoriteLanguages[2]
 
 
 

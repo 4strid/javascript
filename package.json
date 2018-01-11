@@ -1,0 +1,24 @@
+{
+  "name": "javascript",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cutejs/javascript.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cutejs/javascript/issues"
+  },
+  "homepage": "https://github.com/cutejs/javascript#readme",
+  "dependencies": {
+    "connect-static": "^1.5.2",
+    "diet": "^0.16.0",
+    "diet-connect": "^1.2.0"
+  }
+}
