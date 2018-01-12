@@ -1232,13 +1232,13 @@ When I said we read expressions from left to right, the logic sort of breaks dow
 
 Imagine we have a really great word processing library with three functions
 
-var cs = superGrammar.checkSpelling
-var cg = superGrammar.checkGrammar
-var cf = superGrammar.checkFormatting
+var checkS = superGrammar.checkSpelling
+var checkG = superGrammar.checkGrammar
+var checkF = superGrammar.checkFormatting
 
 var source = 'My novel, full of spelling, grammar, and formatting mistakes... etc, for 300 more pages'
 
-var fixed = cf(cg(cs(source)))
+var fixed = checkF(checkG(checkS(source)))
 
 (Parentheses as loopback)
 
@@ -1260,6 +1260,40 @@ So far we've called all our functions ourselves with parentheses. But a function
 button.addEventListener('click', function () {
 	message.textContent = 'Button was pressed!'
 })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 Part 2: Prototypes
 
