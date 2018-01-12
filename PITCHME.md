@@ -241,19 +241,23 @@ We most commonly declare and define variables at the same time.
 Variables and functions should have short, descriptive names. It's more important that they're descriptive than that they're short. Typically, we spell out a multiword name using camelCase, or capitalizing each word following the first.
 
 <div class="left">
-#### Good Variable Names
-- input
-- message
-- accountNumber
-- finalOutput
+<h3>Good Variable Names</h3>
+<ul>
+  <li>input</li>
+  <li>message</li>
+  <li>accountNumber</li>
+  <li>finalOutput</li>
+</ul>
 </div>
 
 <div class="right">
-#### Not So Good Names
-- variable
-- a123
-- thing
-- hardtoreadvariable
+<h3>Not So Good Names</h3>
+<ul>
+  <li>variable</li>
+  <li>a123</li>
+  <li>thing</li>
+  <li>hardtoreadvariable</li>
+</ul>
 </div>
 
 +++
