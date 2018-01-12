@@ -1,7 +1,28 @@
+already done:
+expressions
+the console
+variables
+booleans
+if else
+arrays
+array indexing
+for loop
+while loop
+the object hotel
+for in
+this
+
+
 todo:
+good naming conventions
 how to read expressions
 accessing out of bound indices
 how to read nested function calls
+working with numbers
+working with strings
+working with arrays
+working with objects
+es6
 
 ###############
 # EXPRESSIONS #
@@ -17,11 +38,11 @@ Any numeric value, can be an integer, can be floating point, can be very big or 
 
 Strings
 -------
-A string of text. Can be empty '' or very long. Every time we put text up on the screen, we use strings. Must be wrapped in quotation marks, you can use single or double quotes, either way. I will be using single quotes for all the examples.
+A string of text. Can be empty '' or very long. Every time we put text up on the screen, we use strings. Must be wrapped in quotation marks. You can use single or double quotes, either way. I will be using single quotes for all the examples.
 
 If you need to type the same quotation mark you're using to delimit the string, you'll have to escape it by adding a backslash: \' or \"
 
-You can use escaping to add line breaks to your string with \n
+You can also use escaping to add line breaks to your string with \n
 
 Examples:
 
@@ -93,11 +114,28 @@ You can use
 https://mothereff.in/js-variables
 to check
 
+Naming Conventions
+------------------
+Variables and functions should have short, descriptive names. It's more important that they're descriptive than that they're short. Typically, we spell out a multiword name using camelCase, or capitalizing each word following the first.
+
+Good variable names:
+input
+message
+accountNumber
+finalOutput
+
+Bad variable names:
+thing
+a1
+variable
+
+I will be using a lot of one letter variable names in examples. I actually think that's ok sometimes, when the variable is basically like an algebraic variable, like in the sum (a, b) and of course no one thinks it's bad to use i in loops.
+
 So let's declare a variable:
 
 var myNiceVariable;
 
-The semicolon at the end marks the end of a statement. You can omit it if you like, as long as you only make one statement per line. I really mean that: it's up to you, I personally don't use them in my own projects, I think it looks way nicer without them, but lots of people like them. You should stick to one or the other, don't just randomly pepper your code with semicolons.
+The semicolon at the end marks the end of a statement. You can omit it if you like, as long as you only make one statement per line. I really mean that: it's up to you. I personally don't use them in my own projects, I think it looks way nicer without them, but lots of people like them. You should stick to one or the other, don't just randomly pepper your code with semicolons.
 
 You can assign a variable a value with the = operator.
 
@@ -113,7 +151,7 @@ Note that `myNiceVariable = 'hello'` is also an expression! Its value is the val
 
 However a variable declaration is *not* an expression. It's a statement. What's the difference? Any valid expression is also a valid statement, but a statement like a variable declaration can't be strung together with other expressions the way expressions can. Basically you can't do something like
 
-var x = 5 + var y = 5
+var x = 5 + var y = 5;
 
 That is to say, the right hand side of an assignment can never contain a variable declaration.
 
@@ -147,9 +185,9 @@ Let's play in the console a bit more, but now add variables to the mix as we bui
 
 console.log
 -----------
-console.log is a function we can call to achieve the side effect of printing something to the console. We can print any expression by invoking `console.log(<anything here>)` and putting whatever we want to print between the parentheses. We call this invocation "calling" the function, represented in code by parentheses. We pass whatever we want to print inside those parentheses as an "argument". A function call is also an expression, in this case it resolves to undefined as console.log has nothing meaningful to return. When we call console.log we ignore the value of the expression, as the side effect is what we are interested in, but it's still there.
+console.log is a function we can call to achieve the side effect of printing something to the console. We can print any expression by invoking `console.log(<anything here>)` and putting whatever we want to print between the parentheses. We call this invocation "calling" the function, represented in code by parentheses. We pass whatever we want to print inside those parentheses as an "argument". We've been in the console anyway, so typing in an expression automatically calls console.log on that expression for you, but you can use console.log to do it in code.
 
-We've been in the console anyway, so typing in an expression automatically calls console.log on that expression for you, but you can use console.log to do it in code.
+//A function call is also an expression, in this case it resolves to undefined as console.log has nothing meaningful to return. When we call console.log we ignore the value of the expression, as the side effect is what we are interested in, but it's still there.
 
 This is enough for us to write the most rudimentary version of Hello World:
 
@@ -163,6 +201,10 @@ console.log('Hello world')
 <<< activity >>>
 
 Print some variables or other expressions to the console with console.log
+
+#############
+# FUNCTIONS #
+#############
 
 #########################
 # ENOUGH HTML TO GET BY #
@@ -219,7 +261,7 @@ Let's make a slightly more interesting version of Hello World.
 	}
 	</script>
 
-This time we've added an input field and a button. We access the nested variable 'value' in document.querySelector('name-field') to get the String value of what the user typed in. Also note that using - as a word separator in class names is very common.
+This time we've added an input field and a button. We access the nested variable 'value' in document.querySelector('.name-field') to get the String value of what the user typed in. Also note that using - as a word separator in class names is very common.
 
 As far as the button goes, for now just trust me when I say you can make a button do things by giving it an onclick attribute, and passing the name of a function you declare in your script and parentheses. Functions are named blocks of code you can call later on. When we write code inside a function declaration, that code isn't executed right away, actually it's not executed at all, until someone calls the function. We'll talk a whole lot more about functions later, but for now just knowing you can attach them to buttons with onclick is enough.
 
@@ -271,8 +313,8 @@ The important thing is we're converting our Strings into Numbers right away.
 Now it's time for you to build something. We'll be making a simple calculator that takes two numbers and adds, subtracts, multiplies, or divides them, displaying the result to the screen. You can and should use the shopping cart as your starting point.
 
 Here's the differences:
-  - the calculator will have 4 buttons instead of 1. Each of these buttons will run a different function.
   - the calculator will only have 2 input fields instead of 3
+  - the calculator will have 4 buttons instead of 1. Each of these buttons will run a different function.
 
 Use copy and paste! Write the code for one of the functions and copy and paste it: Rename the pasted function, and you should only have to change one character in the code itself.
 
@@ -347,7 +389,7 @@ We use Booleans to make decisions in our code: right now in if-else statements a
 
 So we could set
 var pieIsReady = true
-and our loop would execute, but it begs the question, "What is it about a pie that determines if it is ready?" Shouldn't pieIsReady be based on that, somehow?
+and our if statement would execute, but it begs the question, "What is it about a pie that determines if it is ready?" Shouldn't pieIsReady be based on that, somehow?
 
 We'll use a new set of operators to construct Booleans out of other types of expressions.
 
@@ -477,7 +519,7 @@ function guessNumber () {
 
 But since we never need the function outside of this event listener, we can just define it inside the call to addEventListener. It's compact, and once you get used to it, easier to read and understand.
 
-Now the coding can begin. We need to generate a random number and store it to compare guesses to later. Variables, very good. We need a variable to keep track of how many guesses the user made.
+Now the coding can begin. We need to generate a random number and store it to compare guesses to later. Variables, very good. We need a variable to keep track of how many guesses the user has remaining.
 
 var randomNumber = Math.ceil(Math.random() * 100)
 var tries = 10
@@ -530,6 +572,12 @@ More Conditional Operators
 
 ??? Short circuit evaluation ???
 
+if (myObject && myObject.isReady)
+
+var mightBeDefined
+
+var myVar = mightBeDefined || 'default value'
+
 ##########
 # ARRAYS #
 ##########
@@ -541,12 +589,12 @@ There exists a way to construct these open-ended generic data types that can con
 We've seen plenty of Objects before:
 
 document
-  > the special document object that contains the DOM. Contains many useful methods for interacting with the DOM
+  > the special global document object that contains the DOM. Contains many useful methods for interacting with the DOM
 
 document.querySelector('.button')
   > an object that represents an HTML button on the page. Contains many useful methods / properties for interacting with the button
 
-We accessed "properties" of those objects with dot notation, properties such as `input.value` and `message.innerText`
+We accessed members of those objects with dot notation, properties such as `input.value` and `message.innerText`
 
 An object can have any number of properties, and they can be named even more freely than variables: properties can have literally any String name you want.
 
@@ -728,6 +776,12 @@ If you want to increment first, then evaluate, you can put them in front of the 
 ++i
 --i
 
+var i = 0;
+var message = 'Hello ' + ++i
+
+message will be 'Hello 1'
+and i will be 1
+
 There's nothing special about using the variable name i here, nor is there anything special about ANY variable name we use in examples, they are just names.
 
 counter++
@@ -796,8 +850,8 @@ This means we must initialize the counter and increment it ourselves. We can rew
 Example:
 
 var i = 0;
-while (i < a.length) {
-    b[i] = a[i] * 2
+while (i < cats.length) {
+	message += cats[i] + ', '
 	i++
 }
 
@@ -848,9 +902,9 @@ var secret = [10, 1, 22, 1, 19, 3, 18, 9, 16, 20, 0, 25, 5, 1, 8]
 
 function checkIfSafe () {
 	var safe = true
-	for (var i = 0; i < array.length; i++) {
+	for (var i = 0; i < secret.length; i++) {
 		//console.log(i)
-		if (array[i] < 1 && array[i] > 26) {
+		if (secret[i] < 0 || secret[i] > 26) {
 			safe = false
 			break
 		}
@@ -894,6 +948,38 @@ for (var i = 0; i < 100; i++) {
 		continue
 	}
 	b[b.length] = i
+}
+
+for (var i = 0; i < 100; i++) {
+	if (i % 2 === 0) {
+		continue
+	}
+	if (i % 3 === 0) {
+		continue
+	}
+	if (i % 5 === 0) {
+		continue
+	}
+	if (i % 7 === 0) {
+		continue
+	}
+	b[b.length] = i
+}
+
+for (var i = 0; i < 100; i++) {
+	if (i % 2 !== 0) {
+		if (i % 3 !== 0) {
+			if (i % 5 !== 0) {
+				if (i % 7 !== 0) {
+					b[b.length] = i
+				}
+			}
+		}
+	}
+
+	if (i % 2 !== 0 && i % 3 !== 0 && i % 5 !== 0 && i % 7 !== 0) {
+		b[b.length] = i
+	}
 }
 
 This copies over only the odd numbered values of i, exiting the iteration early if it's even so the last line doesn't execute.
@@ -998,8 +1084,7 @@ Example:
 var instructor = {
 	name: 'Peter',
 	age: 25,
-	student: false,
-	job: 'JS Instructor',
+	course: 'JavaScript',
 	favoriteLanguages: ['JavaScript', 'Haskell', 'C', 'Java', 'Python'],
 	greet: function () {
 		console.log('Hi! My name is ' + this.name)
@@ -1007,13 +1092,174 @@ var instructor = {
 	}
 }
 
-We already know how to access these properties:
+We call this construction with the curly braces an object literal. It consists of curly braces and any number of members which have the form
+
+name: value
+
+and are separated by commas.
+
+Note that though it seems kind of like we are defining variables here, it's not quite the same thing so we don't use var, and we don't use = or ;
+
+The value of an object member can have any type. Our instructor object has two strings, a number, an array, and a function. The first four items are data values, and we refer to them as the object's properties. The last item is a function. We call a function attached to an object a method. An object's methods allow it to do something with its data values.
+
+We already know how to access these properties and methods:
 
 instructor.name
 instructor.age
 instructor.favoriteLanguages[2]
+instructor.greet()
+
+We can also use square bracket notation, putting a string into square brackets.
+
+obj['name']
+
+The cool thing about square bracket notation is you can pass a variable in.
+
+var propName = 'dynamic'
+obj[propName]
+
+for... in
+---------
+This lends itself particularly helpful if we want to loop over all of an object's properties. We can do it with a different kind of for loop.
+
+for (var key in obj) {
+	var value = obj[key]
+	console.log(value)
+}
+
+The syntax pretty much describes itself. As with all variables, you can name the iterator whatever you want.
+
+for... in loops over an object's property names, setting the iterator to a name with each pass of the loop.
+
+We use square bracket syntax to get the actual property value from the object using the name.
+
+Example:
+<div class="output"></div>
+
+<script>
+var instructor = {
+	name: 'Peter',
+	age: 25,
+	course: 'JavaScript',
+	favoriteLanguages: ['JavaScript', 'Haskell', 'C', 'Java', 'Python'],
+	greet: function () {
+		console.log('Hi! My name is ' + this.name)
+		console.log('My favorite programming language is ' + this.favoriteLanguages[0])
+	}
+}
+
+var output = document.querySelector('.output')
+
+for (var prop in instructor) {
+	var title = document.createElement('h3')
+	title.textContent = prop
+	output.appendChild(title)
+
+	var value = document.createElement('p')
+	value.textContent = instructor[prop]
+	output.appendChild(value)
+}
+
+</script>
+
+this
+----
+In the method on our example instructor object, there's an odd variable called `this` that seems to come from nowhere. `this` refers to the object that the method is attached to. That's all. Pretty simple really.
+
+When we call
+
+instructor.greet()
+
+the `instructor` object is set as `this`
+
+That way, the object has a way to access its data properties in its methods, by referring to itself as `this`
 
 
+FUNCTIONS ???
+
+Functions are the heart of JavaScript. It's not for loops and if statements that primarily govern the flow of executions. That would be pretty cumbersome, to just have one giant if else chain that contained all the logic of your program. No, what really gets the code moving and shaking, that's functions.
+
+Functions have the following syntax:
+
+function name () {
+
+}
+
+Name bound by same naming restrictions as variables.
+
+Functions can also have parameters:
+
+function myCoolFunction (param1, param2, param3) {
+
+}
+
+These must also be valid identifiers. Parameters are the names by which we will refer to whatever gets passed in to the function inside the function body.
+
+Functions can also return something, meaning when someone calls the function, the function expression will evaluate to whatever the function returns.
+
+function add (a, b) {
+	return a + b
+}
+
+add(2, 3)
+
+Note that on the outside, when we call the function the values, called arguments, are 2 and 3. On the inside, they are referred to as a and b. Each parameter in the function declaration is like a funnel, dropping whatever comes in into the parameter's cardboard box. Inside the function body, the parameters are basically variables.
+
+Parameters vs. Arguments
+------------------------
+The names we refer to what comes in by are parameters
+The stuff that goes in when we call it are arguments
+
+People say the distinction is pedantic, but I think it's useful to think about them as conceptually distinct. Arguments and parameters exist in entirely separate universes.
+
+Consider
+
+function a () {
+	var secret = 'shhh'
+	b(secret)
+}
+
+function b (param) {
+	console.log(secret)
+	//console.log(param)
+}
+
+If we try to access it by the variable name it had as an argument, we get an error. We can only access it by its new name, param.
+
+Nested Function Calls
+---------------------
+When I said we read expressions from left to right, the logic sort of breaks down if you have a function call inside a function call inside a function call.
+
+Imagine we have a really great word processing library with three functions
+
+var cs = superGrammar.checkSpelling
+var cg = superGrammar.checkGrammar
+var cf = superGrammar.checkFormatting
+
+var source = 'My novel, full of spelling, grammar, and formatting mistakes... etc, for 300 more pages'
+
+var fixed = cf(cg(cs(source)))
+
+(Parentheses as loopback)
+
+Organizing Your Code
+--------------------
+You should basically not have any code just freely floating around, or at least it should be kept to a minimum. Instead code can be organized into functions, which return values that can be used somewhere else. This flow of function call(arguments) => return value is exactly what we want our code to look like. Data flowing as arguments and flowing as returns. Every function should do very little, just a simple transformation from arguments to return value.
+
+My linter has a rule that limits you to 10 statements per function. It's considered an error to write a function too complicated.
+
+If a function has many things to do, it might be better if those pieces were functions of their own.
+
+Example:
+TODO
+
+Functions as arguments
+----------------------
+So far we've called all our functions ourselves with parentheses. But a function is an object just like anything else, and can be passed to another function to be called later.
+
+button.addEventListener('click', function () {
+	message.textContent = 'Button was pressed!'
+})
 
 Part 2: Prototypes
 
