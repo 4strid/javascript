@@ -20,7 +20,7 @@
 @title[Expressions Intro]
 
 # Expressions
-## The life blood of JavaScript
+### The life blood of JavaScript
 
 +++
 
@@ -340,6 +340,8 @@ console.log is a function we can call to print something to the console. It can 
 
 ```javascript
 console.log('anything can go in here');
+console.log(123);
+console.log(variableName);
 ```
 
 +++
@@ -361,6 +363,236 @@ Print some variables or expressions using console.log
 
 ---
 
+@title[Enough HTML To Get By]
+
+# Enough HTML To Get By
+
++++
+
+## Text input field
+
+```html
+<input type="text">
+```
+
++++
+
+## Button
+
+```html
+<button type="button">Press me!</button>
+```
+
++++
+
+## Div
+
+```html
+<div>I am a div</div>
+```
+
++++
+
+## Script
+
+```html
+<script>
+console.log('Hello world!');
+</script>
+```
+
+---
+
+@title[Talking to the DOM]
+
+# Talking to the ~~HTML~~ DOM
+
++++
+
+## Talking to the HTML
+
+To hook up the HTML to the JavaScript, we assign classes to our HTML elements which we can ask for later in our code. Let's make Hello World using HTML, classes, and JavaScript.
+
++++
+
+```html
+<div class="message"></div>
+
+<script>
+  var message = document.querySelector('.message');
+  message.textContent = 'Hello world!';
+</script>
+```
+
++++
+
+```html
+<div class="message"></div>
+```
+
+The container where we will put our Hello World string
+
++++
+
+```javascript
+  var message = document.querySelector('.message');
+```
+
+Read complex expressions from left to right
+<br>
+Gets the element with classname 'message'
+
++++
+
+```javascript
+  message.textContent = 'Hello world!';
+```
+
+Sets the nested variable textContent to our message, displaying it to the screen
+
+---
+
+@title[Hello world... again?]
+
+## Hello World pt. 3
+
+```html
+<input type="text" class="name-field">
+<button type="button" onclick="greet()">Say hello</button>
+<div class="message"></div>
+
+<script type="text/javascript">
+function greet () {
+	var input = document.querySelector('.name-field');
+	var message = 'Hello ' + input.value;
+	document.querySelector('.message').textContent = message;
+}
+</script>
+```
+
+`input.value` gets the String value of what the user typed in
+
+---
+
+@title[Broken Shopping Cart]
+
+### Broken Shopping Cart
+<p style="font-size: small;">
+Consider the following buggy shopping cart calculator which is supposed to sum the costs of the input fields and then add a tax of 5%.
+</p>
+
+```html
+	<input type="text" class="item-1">
+	<input type="text" class="item-2">
+	<input type="text" class="item-3">
+	<button type="button" onclick="calculate()">Calculate</button>
+
+	<div class="result">
+	Total:
+	</div>
+
+	<script type="text/javascript">
+	var item1 = document.querySelector('.item-1');
+	var item2 = document.querySelector('.item-2');
+	var item3 = document.querySelector('.item-3');
+
+	function calculate () {
+		var total = (item1.value + item2.value + item3.value) * 1.05;
+		document.querySelector('.result').textContent = 'Total: ' + total;
+	}
+	</script>
+```
+
++++
+
+## Discussion
+
+#### Why doesn't this work?
+
+#### Why doesn't this work with decimal points?
+
++++
+
+Change the line to
+
+```javascript
+var total = (Number(item1.value) + Number(item2.value) + Number(item3.value)) * 1.05;
+```
+
+---
+
+@title[Activity: Simple Calculator]
+
+## Activity
+
+Simple calculator: take two numbers and add, subtract, multiply, or divide them
+
+You can and should use the shopping cart we just looked at as your starting point.
+
+Differences:
+- the calculator will only have 2 input fields instead of 3
+- the calculator will have 4 buttons instead of 1. Each of the buttons will run a different function
+
+Use copy and paste!
+
++++
+
+## Solution
+
+---
+
+@title[Conditionals]
+
+# Conditionals
+### Making those hard choices
+
++++
+
+## If-Else Statement
+
+```javascript
+if (condition) {
+	code block
+} else {
+	do something else
+}
+```
+
++++
+
+### A real example:
+
+```javascript
+if (pieIsReady) {
+    message.textContent = 'here is a hot, fresh slice of pie!';
+} else {
+    message.textContent = 'sorry but you\'ll have to wait a bit longer for pie';
+}
+```
+
+What kind of variable is pieIsReady?
+
+---
+
+@title[Booleans]
+
+## Booleans
+
+Booleans can only have one of two values: `true` or `false`. These are special keywords in JavaScript and don't need quotation marks.
+
+We use Booleans to make decisions in our code: if the condition of an if-statement is `true` then the code block after executes. If it is `false` then the else branch executes.
+
++++
+
+So we could set
+
+```javascript
+var pieIsReady = true
+```
+
+and our if-statement would run, but it begs the question, "What is it about a pie that determines if it is ready?" Shouldn't pieIsReady be based on that, somehow?
+
+
 @title[Functions]
 
 # Functions
@@ -377,20 +609,16 @@ Print some variables or expressions using console.log
 
 ## Function Syntax
 
-<div class="left">
 ```javascript
 function name () {
 	// code to execute
 }
 ```
-</div>
 
-<div class="right">
 - `function` keyword
 - name
 - () signature
 - {...} function body
-</div>
 
 Function name must be a valid identifier (same rules as variable names)
 
