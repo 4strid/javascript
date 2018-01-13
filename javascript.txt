@@ -572,9 +572,11 @@ More Conditional Operators
 
 ??? Short circuit evaluation ???
 
-if (myObject && myObject.isReady)
-
 var mightBeDefined
+
+if (mightBeDefined && mightBeDefined.isReady) {
+
+}
 
 var myVar = mightBeDefined || 'default value'
 
@@ -609,6 +611,7 @@ myObj[5]
 //Arrays as Objects
 //-----------------
 //Arrays first and foremost are Objects. That's why there's an * when I say they're a type; they're not; they're actually just objects, with unique properties and methods that make then special.
+
 Before we talk about objects For Real, we're going to talk about a special kind of object: arrays. An array is an object that describes a list. If you consider a list in general, it contains multiple items and has a specific ordering, we also consider the useful property length: how many items are in the list. JavaScript Arrays follow that exact model.
 
 Let's look at some Arrays
@@ -701,17 +704,9 @@ We will talk about why this is useful literally right now, so just hold your hor
 
 So far we've accessed elements in our array one at a time with indexing, but what if we wanted to do something with all of the elements, regardless of how many there are?
 
-Let's say we want to construct an array that contains two times the values of another array. What do we need?
+Let's say we have a nice array of all my cats and I'd like to print it out in one sentence. What do we need?
 
 Here's the code just doing it by hand:
-
-var a = [1, 2, 3, 4]
-var b = []
-
-b[0] = a[0] * 2
-b[1] = a[1] * 2
-b[2] = a[2] * 2
-b[3] = a[3] * 2
 
 var cats = ['Wednesday', 'Andy', 'OG', 'Skitchy']
 var message = 'My cats are called '
@@ -1048,7 +1043,7 @@ console.log(b)
 
 When we change x to 10, y is left unchanged because we just copied the value of x into y. After that, x and y have no relationship to each other.
 
-When we assign a to b, the array is not copied. Instead, b actually refers to the exact same object as a. When we change a, b is also affected because they refer to the same object.
+When we assign a to b, the array is not copied. Instead, b actually refers to the exact same object as a. When we change a, b is also affected.
 
 The Object Hotel
 ----------------
@@ -1164,7 +1159,7 @@ for (var prop in instructor) {
 
 this
 ----
-In the method on our example instructor object, there's an odd variable called `this` that seems to come from nowhere. `this` refers to the object that the method is attached to. That's all. Pretty simple really.
+In the method on our example instructor object, there's an odd variable called `this` that seems to come from nowhere. `this` refers to the object that the function is attached to. That's all. Pretty simple really.
 
 When we call
 
